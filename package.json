@@ -1,0 +1,19 @@
+{
+  "name": "intro-websocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.1.2",
+    "websocket": "^1.0.34",
+    "ws": "^7.5.0"
+  }
+}

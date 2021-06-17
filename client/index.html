@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket.io illustration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"
+            integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h2>Group chat</h2>
+
+<div id="chats">
+</div>
+<label>
+    <button id="send">send</button>
+
+    <input type="text" name="message" id="message"/>
+</label>
+
+</body>
+<script>
+    const socket = io('ws://localhost:3030')
+    socket.on('connect', () => console.log('connection established'))
+    socket.on('message', data => {
+        let chat = document.createElement('p')
+        chat.innerText = data
+        chatsContainer.appendChild(chat)
+    })
+    let sendBtn = document.getElementById('send')
+    let messageInput = document.getElementById('message')
+    let chatsContainer = document.getElementById('chats')
+    sendBtn.addEventListener('click', e => {
+        console.log(messageInput.value)
+        if (messageInput.value) {
+            socket.send(messageInput.value)
+        }
+    })
+</script>
+</html>
